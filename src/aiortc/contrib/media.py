@@ -418,9 +418,10 @@ class MediaRecorder:
     :param options: Additional options to pass to FFmpeg.
     """
 
-    def __init__(self, file, format=None, options={}):
+    def __init__(self, file, format=None, options={}, framerate=30):
         self.__container = av.open(file=file, format=format, mode="w", options=options)
         self.__tracks = {}
+        self._framerate = framerate
 
     def addTrack(self, track):
         """
@@ -441,7 +442,7 @@ class MediaRecorder:
                 stream = self.__container.add_stream("png", rate=30)
                 stream.pix_fmt = "rgb24"
             else:
-                stream = self.__container.add_stream("libx264", rate=30)
+                stream = self.__container.add_stream("libx264", rate=self._framerate)
                 stream.pix_fmt = "yuv420p"
         self.__tracks[track] = MediaRecorderContext(stream)
 

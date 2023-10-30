@@ -1,14 +1,10 @@
 from typing import Dict, List, Optional, Union
 
-from ..rtcrtpparameters import (
-    ParametersDict,
-    RTCRtcpFeedback,
-    RTCRtpCapabilities,
-    RTCRtpCodecCapability,
-    RTCRtpCodecParameters,
-    RTCRtpHeaderExtensionCapability,
-    RTCRtpHeaderExtensionParameters,
-)
+from ..rtcrtpparameters import (ParametersDict, RTCRtcpFeedback,
+                                RTCRtpCapabilities, RTCRtpCodecCapability,
+                                RTCRtpCodecParameters,
+                                RTCRtpHeaderExtensionCapability,
+                                RTCRtpHeaderExtensionParameters)
 from .base import Decoder, Encoder
 from .g711 import PcmaDecoder, PcmaEncoder, PcmuDecoder, PcmuEncoder
 from .h264 import H264Decoder, H264Encoder, h264_depayload
@@ -86,7 +82,7 @@ def init_codecs() -> None:
         dynamic_pt += 2
 
     add_video_codec("video/VP8")
-    for profile_level_id in ("42001f", "42e01f"):
+    for profile_level_id in ("42001f", "42e01f", "4d0033"):
         add_video_codec(
             "video/H264",
             {
